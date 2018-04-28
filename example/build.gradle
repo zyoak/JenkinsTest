@@ -1,0 +1,60 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "23.0.2"
+    defaultConfig {
+        applicationId "com.hqyxjy.ldf.supercalendar"
+        minSdkVersion 16
+        targetSdkVersion 22
+        versionCode 2
+        versionName "2.0"
+    }
+
+    signingConfigs{
+        release{
+            storeFile file('test.jks')
+            keyAlias 'test'
+            keyPassword '111111'
+            storePassword '1111'
+        }
+        debug{
+            storeFile file('test.jks')
+            keyAlias 'test'
+            keyPassword '111111'
+            storePassword '1111'
+        }
+    }
+
+    buildTypes {
+
+        debug{
+            signingConfig signingConfigs.debug
+        }
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    android.applicationVariants.all{ variant ->
+        variant.outputs.each { output ->
+            def newName = "SuperCalendar" + "_" + defaultConfig.versionName + "_" + variant.buildType.name + ".apk"
+            def outDirectory = output.outputFile.getParent()
+            output.outputFile = new File(outDirectory , newName)
+        }
+    }
+
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile 'com.android.support:appcompat-v7:24+'
+    compile project(path: ':calendar')
+    compile project(':simpledatepicker')
+}
