@@ -16,13 +16,13 @@ android {
             storeFile file('test.jks')
             keyAlias 'test'
             keyPassword '111111'
-            storePassword '1111'
+            storePassword '111111'
         }
         debug{
             storeFile file('test.jks')
             keyAlias 'test'
             keyPassword '111111'
-            storePassword '1111'
+            storePassword '111111'
         }
     }
 
