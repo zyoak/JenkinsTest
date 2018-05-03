@@ -61,7 +61,7 @@ android {
 
     android.applicationVariants.all{ variant ->
         variant.outputs.each { output ->
-            def newName = "SuperCalendar" + "_" + variant.productFlavors[0].name + "-" +defaultConfig.versionName + "_" + variant.buildType.name + ".apk"
+            def newName = "SuperCalendar" + "_" + variant.productFlavors[0].name + "_" +defaultConfig.versionName + "_" + variant.buildType.name + ".apk"
             def outDirectory = output.outputFile.getParent()
             output.outputFile = new File(outDirectory , newName)
         }
